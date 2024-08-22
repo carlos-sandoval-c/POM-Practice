@@ -14,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class BaseTest {
     protected DriverManager driverManager;
-    protected static Logger logger = LogManager.getLogger("TestLogger");
+    protected static Logger logger = LogManager.getLogger(BaseTest.class);
 
     public void navigateTo(String url) {
         if (url == null || url.isEmpty()) {
@@ -26,7 +26,7 @@ public class BaseTest {
     /**
      * Use generic to avoid changes on the first page
      */
-    public <T extends BasePage> T loadAndGetFirstPage(Class<T> pageClass) {
+    public <T extends BasePage> T loadPageByClass(Class<T> pageClass) {
         Class<WebDriver> expectedParameterClass = WebDriver.class;
         T page = null;
 
