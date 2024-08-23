@@ -9,13 +9,16 @@ public class DriverManager {
     private final WebDriver driver;
 
     public DriverManager(String browser) {
-        if ("firefox".equalsIgnoreCase(browser)) {
-            WebDriverManager.firefoxdriver().setup();
-            this.driver = new FirefoxDriver();
-        }
-        else {
-            WebDriverManager.chromedriver().setup();
-            this.driver = new ChromeDriver();
+        switch (browser.toLowerCase()) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                this.driver = new FirefoxDriver();
+                break;
+            case "chrome":
+            default:
+                WebDriverManager.chromedriver().setup();
+                this.driver = new ChromeDriver();
+                break;
         }
     }
 
