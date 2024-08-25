@@ -5,6 +5,9 @@
     <test name="Successful Purchase">
         <parameter name="username" value="standard_user"/>
         <parameter name="password" value="secret_sauce"/>
+        <parameter name="firstName" value="John"/>
+        <parameter name="lastName" value="Doe"/>
+        <parameter name="zipCode" value="123123"/>
         <classes>
             <class name="com.globant.tests.PurchaseProductTest"/>
         </classes>
