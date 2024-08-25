@@ -9,13 +9,13 @@ import java.util.List;
 
 public class CartPage extends BasePage {
     @FindBy(css = ".title")
-    WebElement sectionTitle;
+    private WebElement sectionTitle;
 
     @FindBy(css = ".cart_item")
-    List<WebElement> productItemCardsList;
+    private List<WebElement> productItemCardsList;
 
     @FindBy(id = "checkout")
-    WebElement checkoutBtn;
+    private WebElement checkoutBtn;
 
     public CartPage(WebDriver driver) {
         super(driver);

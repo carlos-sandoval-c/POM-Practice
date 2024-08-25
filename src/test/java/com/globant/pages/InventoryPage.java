@@ -10,10 +10,10 @@ import java.util.Random;
 
 public class InventoryPage extends BasePage {
     @FindBy(css = ".shopping_cart_link")
-    WebElement goToCartLink;
+    private WebElement goToCartLink;
 
     @FindBy(xpath = "//button[contains(@class, 'btn_inventory')][contains(@name, 'add')]")
-    List<WebElement> productsAddToCartBtnList;
+    private List<WebElement> productsAddToCartBtnList;
 
     public InventoryPage(WebDriver driver) {
         super(driver);
