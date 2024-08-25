@@ -47,7 +47,7 @@ public class LoginPage extends BasePage {
         super.waitElementBeClickable(this.loginBtn);
         this.loginBtn.click();
 
-        if (!super.verifyUrlContains("inventory"))
+        if (super.verifyUrlContains("inventory"))
             return new InventoryPage(super.driver);
         // Invalid credentials or invalid flow
         return null;
