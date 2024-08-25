@@ -62,7 +62,7 @@ public class CheckoutInfoPage extends BasePage {
         this.zipCodeInput.sendKeys(zipCode);
     }
 
-    public CheckoutOverviewPage selectLoginOption() {
+    public CheckoutOverviewPage selectContinueOption() {
         super.waitElementBeClickable(this.continueBtn);
         this.continueBtn.click();
 
