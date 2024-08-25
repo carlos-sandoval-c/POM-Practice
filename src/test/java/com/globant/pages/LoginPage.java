@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
+    @FindBy(css = ".login_logo")
+    private WebElement headerTitle;
+
     @FindBy(id = "user-name")
     private WebElement usernameInput;
 
@@ -17,6 +20,11 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getTitle() {
+        super.waitElementIsDisplayed(this.headerTitle);
+        return this.headerTitle.getText();
     }
 
     public void setUsername(String username) throws IllegalArgumentException {
@@ -35,8 +43,13 @@ public class LoginPage extends BasePage {
         this.passwordInput.sendKeys(password);
     }
 
-    public void selectLoginOption() {
+    public InventoryPage selectLoginOption() {
         super.waitElementBeClickable(this.loginBtn);
         this.loginBtn.click();
+
+        if (!super.verifyUrlContains("inventory"))
+            return new InventoryPage(super.driver);
+        // Invalid credentials or invalid flow
+        return null;
     }
 }
