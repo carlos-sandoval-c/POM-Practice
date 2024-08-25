@@ -24,10 +24,10 @@ public class InventoryPage extends BasePage {
             super.waitElementsAreDisplayed(this.productsAddToCartBtnList);
 
         int indexProduct = RandInt.getRandomIndex(this.productsAddToCartBtnList.size());
-        if (indexProduct < 0)
+        if (indexProduct < 0 || indexProduct >= this.productsAddToCartBtnList.size())
             return;
 
-        this.productsAddToCartBtnList.get(RandInt.getRandomIndex(indexProduct)).click();
+        this.productsAddToCartBtnList.get(indexProduct).click();
     }
 
     public void addToCartRandomProducts(int totalProducts) {
@@ -39,6 +39,8 @@ public class InventoryPage extends BasePage {
             return;
 
         for (int index : indexProductsArr) {
+            if (index < 0 || index >= this.productsAddToCartBtnList.size())
+                return;
             this.productsAddToCartBtnList.get(index).click();
         }
     }
