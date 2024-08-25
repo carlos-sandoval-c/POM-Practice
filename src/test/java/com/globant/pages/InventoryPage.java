@@ -26,6 +26,7 @@ public class InventoryPage extends BasePage {
         Random rand = new Random();
         int randProductIndex = rand.nextInt(this.productsAddToCartBtnList.size());
         this.productsAddToCartBtnList.get(randProductIndex).click();
+        this.productsAddToCartBtnList.remove(randProductIndex);
     }
 
     public boolean isCartEmpty() {

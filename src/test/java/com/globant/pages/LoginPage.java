@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    @FindBy(css = ".login_logo")
-    private WebElement headerTitle;
+    @FindBy(css = ".login_wrapper")
+    private WebElement loginContainer;
 
     @FindBy(id = "user-name")
     private WebElement usernameInput;
@@ -22,9 +22,9 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public String getTitle() {
-        super.waitElementIsDisplayed(this.headerTitle);
-        return this.headerTitle.getText();
+    public boolean isFormDisplayed() {
+        super.waitElementIsDisplayed(this.loginContainer);
+        return this.loginContainer.isDisplayed();
     }
 
     public void setUsername(String username) throws IllegalArgumentException {
