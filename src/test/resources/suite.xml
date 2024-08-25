@@ -2,9 +2,11 @@
 <suite name="SauceDemo Suite">
     <parameter name="url" value="https://www.saucedemo.com/" />
     <parameter name="browser" value="chrome" />
-    <test name="Login Test">
+    <test name="Successful Purchase">
+        <parameter name="username" value="standard_user" />
+        <parameter name="password" value="secret_sauce" />
         <classes>
-            <class name="com.globant.tests.LoginTests" />
+            <class name="com.globant.tests.PurchaseProductTest" />
         </classes>
     </test>
 </suite>
