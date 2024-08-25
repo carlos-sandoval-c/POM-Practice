@@ -19,23 +19,25 @@ public class BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public WebDriver getDriver() {
-        return this.driver;
-    }
-
-    public WebDriverWait getWait() {
-        return this.wait;
-    }
-
-    public void waitElementIsDisplayed(WebElement webElement) {
+    protected void waitElementIsDisplayed(WebElement webElement) {
         this.wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-    public void waitElementIsDisplayed(List<WebElement> webElementsList) {
+    protected void waitElementsAreDisplayed(List<WebElement> webElementsList) {
         this.wait.until(ExpectedConditions.visibilityOfAllElements(webElementsList));
     }
 
-    public void waitElementBeClickable(WebElement webElement) {
+    protected void waitElementBeClickable(WebElement webElement) {
         this.wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    protected boolean verifyUrlContains(String string) throws NullPointerException {
+        String url = this.driver.getCurrentUrl();
+        if (url == null || url.isEmpty())
+            throw new NullPointerException("BasePage - VerifyUrlContains: Unable to obtain URL");
+        else if (string == null)
+            throw new NullPointerException("BasePage - VerifyUrlContains: Expression to evaluate is null");
+
+        return url.toLowerCase().contains(string.toLowerCase());
     }
 }
