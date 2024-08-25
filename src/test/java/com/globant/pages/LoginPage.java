@@ -23,28 +23,22 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isFormDisplayed() {
-        super.waitElementIsDisplayed(this.loginContainer);
         return this.loginContainer.isDisplayed();
     }
 
     public void setUsername(String username) throws IllegalArgumentException {
         if (username == null || username.isEmpty())
             throw new IllegalArgumentException("LoginPage - SetUsername: Invalid username is provided");
-
-        super.waitElementIsDisplayed(this.usernameInput);
         this.usernameInput.sendKeys(username);
     }
 
     public void setPassword(String password) throws IllegalArgumentException {
         if (password == null || password.isEmpty())
             throw new IllegalArgumentException("LoginPage - SetPassword: Invalid password is provided");
-
-        super.waitElementIsDisplayed(this.passwordInput);
         this.passwordInput.sendKeys(password);
     }
 
     public InventoryPage selectLoginOption() {
-        super.waitElementBeClickable(this.loginBtn);
         this.loginBtn.click();
 
         if (super.verifyUrlContains("inventory"))

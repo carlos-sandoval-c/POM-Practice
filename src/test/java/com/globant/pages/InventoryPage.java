@@ -1,12 +1,12 @@
 package com.globant.pages;
 
+import com.globant.utils.RandInt;
 import com.globant.utils.basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Random;
 
 public class InventoryPage extends BasePage {
     @FindBy(css = ".shopping_cart_link")
@@ -23,11 +23,24 @@ public class InventoryPage extends BasePage {
         if (!this.productsAddToCartBtnList.isEmpty())
             super.waitElementsAreDisplayed(this.productsAddToCartBtnList);
 
-        Random rand = new Random();
-        int randProductIndex = rand.nextInt(this.productsAddToCartBtnList.size());
-        if (randProductIndex >= this.productsAddToCartBtnList.size())
-            randProductIndex = this.productsAddToCartBtnList.size() - 1;
-        this.productsAddToCartBtnList.get(randProductIndex).click();
+        int indexProduct = RandInt.getRandomIndex(this.productsAddToCartBtnList.size());
+        if (indexProduct < 0)
+            return;
+
+        this.productsAddToCartBtnList.get(RandInt.getRandomIndex(indexProduct)).click();
+    }
+
+    public void addToCartRandomProducts(int totalProducts) {
+        if (!this.productsAddToCartBtnList.isEmpty())
+            super.waitElementsAreDisplayed(this.productsAddToCartBtnList);
+
+        int[] indexProductsArr = RandInt.getRandomIndex(this.productsAddToCartBtnList.size(), totalProducts);
+        if (indexProductsArr == null)
+            return;
+
+        for (int index : indexProductsArr) {
+            this.productsAddToCartBtnList.get(index).click();
+        }
     }
 
     public boolean isCartEmpty() {

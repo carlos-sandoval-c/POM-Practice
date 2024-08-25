@@ -18,7 +18,7 @@ public class BaseTest {
         this.driverManager.goToUrl(url);
     }
 
-    protected LoginPage loadFirstPage() {
+    protected LoginPage loadFirstPage() throws NullPointerException {
         if (this.driverManager == null || this.driverManager.getDriver() == null)
             throw new NullPointerException("BaseTest - LoadFirstPage: Invalid driver");
         return new LoginPage(this.driverManager.getDriver());
