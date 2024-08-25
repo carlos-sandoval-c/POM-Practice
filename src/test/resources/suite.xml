@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="SauceDemo Suite">
-    <parameter name="url" value="https://www.saucedemo.com/" />
-    <parameter name="browser" value="chrome" />
+    <parameter name="url" value="https://www.saucedemo.com/"/>
+    <parameter name="browser" value="chrome"/>
     <test name="Successful Purchase">
-        <parameter name="username" value="standard_user" />
-        <parameter name="password" value="secret_sauce" />
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="secret_sauce"/>
         <classes>
-            <class name="com.globant.tests.PurchaseProductTest" />
+            <class name="com.globant.tests.PurchaseProductTest"/>
         </classes>
     </test>
 </suite>
