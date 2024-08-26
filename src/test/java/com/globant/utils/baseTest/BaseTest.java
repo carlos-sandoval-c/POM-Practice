@@ -1,10 +1,13 @@
 package com.globant.utils.baseTest;
 
+import com.globant.pages.InventoryPage;
 import com.globant.pages.LoginPage;
 import com.globant.utils.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
@@ -24,6 +27,10 @@ public class BaseTest {
         return new LoginPage(this.driverManager.getDriver());
     }
 
+    protected InventoryPage loadInventoryPage() {
+        return new InventoryPage(this.driverManager.getDriver());
+    }
+
     @BeforeTest()
     @Parameters({"browser", "url"})
     protected void setupDriver(String browser, String url) throws NullPointerException, IllegalArgumentException {
@@ -35,6 +42,16 @@ public class BaseTest {
         this.driverManager = new DriverManager(browser);
         this.driverManager.maximizeWindow();
         this.navigateTo(url);
+    }
+
+    @BeforeMethod()
+    @Parameters({"username", "password"})
+    public InventoryPage verifySuccessfulLogin(String username, String password) {
+        LoginPage loginPage = this.loadFirstPage();
+        Assert.assertTrue(loginPage.isFormDisplayed());
+        loginPage.setUsername(username);
+        loginPage.setPassword(password);
+        return loginPage.selectLoginOption();
     }
 
     @AfterTest()

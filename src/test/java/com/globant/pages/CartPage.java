@@ -14,6 +14,9 @@ public class CartPage extends BasePage {
     @FindBy(css = ".cart_item")
     private List<WebElement> productItemCardsList;
 
+    @FindBy(xpath = "//button[contains(@id, 'remove')]")
+    private List<WebElement> productItemRemoveBntList;
+
     @FindBy(id = "checkout")
     private WebElement checkoutBtn;
 
@@ -31,6 +34,15 @@ public class CartPage extends BasePage {
             return false;
         super.waitElementsAreDisplayed(this.productItemCardsList);
         return true;
+    }
+
+    public void removeAllProducts() {
+        if (this.productItemRemoveBntList.isEmpty())
+            return;
+        super.waitElementsAreDisplayed(this.productItemRemoveBntList);
+        for (WebElement removeBtn : this.productItemRemoveBntList) {
+            removeBtn.click();
+        }
     }
 
     public CheckoutInfoPage goToCheckout() {

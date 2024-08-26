@@ -3,29 +3,14 @@ package com.globant.tests;
 import com.globant.pages.*;
 import com.globant.utils.baseTest.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class PurchaseProductTest extends BaseTest {
-    private InventoryPage loadInventoryPage() {
-        return new InventoryPage(super.driverManager.getDriver());
-    }
-
-    @BeforeMethod()
-    @Parameters({"username", "password"})
-    public InventoryPage verifySuccessfulLogin(String username, String password) {
-        LoginPage loginPage = super.loadFirstPage();
-        Assert.assertTrue(loginPage.isFormDisplayed());
-        loginPage.setUsername(username);
-        loginPage.setPassword(password);
-        return loginPage.selectLoginOption();
-    }
-
     @Test
     @Parameters({"firstName", "lastName", "zipCode"})
     public void verifySuccessfulPurchase(String firstName, String lastName, String zipCode) {
-        InventoryPage inventoryPage = this.loadInventoryPage();
+        InventoryPage inventoryPage = super.loadInventoryPage();
         Assert.assertNotNull(inventoryPage);
         inventoryPage.addToCartRandomProduct();
         Assert.assertFalse(inventoryPage.isCartEmpty());

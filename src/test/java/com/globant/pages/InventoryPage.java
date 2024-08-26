@@ -9,9 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class InventoryPage extends BasePage {
-    @FindBy(css = ".shopping_cart_link")
-    private WebElement goToCartLink;
-
     @FindBy(xpath = "//button[contains(@class, 'btn_inventory')][contains(@name, 'add')]")
     private List<WebElement> productsAddToCartBtnList;
 
@@ -43,20 +40,5 @@ public class InventoryPage extends BasePage {
                 return;
             this.productsAddToCartBtnList.get(index).click();
         }
-    }
-
-    public boolean isCartEmpty() {
-        super.waitElementIsDisplayed(this.goToCartLink);
-        // If the cart is empty, it will not have text.
-        return this.goToCartLink.getText().isEmpty();
-    }
-
-    public CartPage goToCart() {
-        super.waitElementIsDisplayed(this.goToCartLink);
-        this.goToCartLink.click();
-
-        if (super.verifyUrlContains("cart"))
-            return new CartPage(super.driver);
-        return null;
     }
 }
