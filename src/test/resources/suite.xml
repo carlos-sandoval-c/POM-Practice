@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="SauceDemo Suite">
+    <parameter name="url" value="https://www.saucedemo.com/"/>
+    <parameter name="browser" value="chrome"/>
+
+    <parameter name="username" value="standard_user"/>
+    <parameter name="password" value="secret_sauce"/>
+    <test name="Successful Purchase">
+        <parameter name="firstName" value="John"/>
+        <parameter name="lastName" value="Doe"/>
+        <parameter name="zipCode" value="123123"/>
+        <classes>
+            <class name="com.globant.tests.PurchaseProductTest"/>
+        </classes>
+    </test>
+    <test name="Cart Management">
+        <parameter name="total_products" value="3"/>
+        <classes>
+            <class name="com.globant.tests.CartManagementTest"/>
+        </classes>
+    </test>
+    <test name="Successful Logout">
+        <classes>
+            <class name="com.globant.tests.LogoutTest"/>
+        </classes>
+    </test>
+</suite>
