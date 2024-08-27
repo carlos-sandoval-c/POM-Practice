@@ -3,6 +3,7 @@ package com.globant.utils.baseTest;
 import com.globant.pages.InventoryPage;
 import com.globant.pages.LoginPage;
 import com.globant.utils.DriverManager;
+import com.globant.utils.persistence.DataPropertiesProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -39,6 +40,7 @@ public class BaseTest {
         else if (url.isEmpty())
             throw new IllegalArgumentException("BaseTest - SetupDriver: Empty URL");
 
+        DataPropertiesProvider.loadProperties();
         this.driverManager = new DriverManager(browser);
         this.driverManager.maximizeWindow();
         this.navigateTo(url);
